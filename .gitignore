@@ -1,1 +1,10 @@
 /target/
+
+.*
+.springBeans
+.project
+.classpath
+.settings/**
+/log/**/**
+*.log
+

@@ -1,28 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>prop demo</title>
+<style>
+p {
+	margin: 20px 0 0;
+}
+
+b {
+	color: blue;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		alert('Hello');
+		//$("#duration option[id='2']").attr("selected", "selected");
+		//$('#mySelectList option:eq(')').prop('selected', true)
+		$('#mySelectList :nth(4)').prop('selected', true );
+	});
+</script>
 </head>
 <body>
 
 
-	<img alt="PAVAN"
-		src="${pageContext.request.contextPath}/static/${imgpath}">
+	<select id="mySelectList">
+		<option id="one" description="Blue">Blue</option>
+		<option id="2" description="Black">Black</option>
+		<option id="three" description="Green">Green</option>
+	</select>
 
-	<img src="${pageContext.request.contextPath}/static/${imgpath}"
-		alt="John Doe" class="circle photo">Hi! I am good!
-		
-		<div class="col s12">
-			
-					<iframe width="420" height="315"
-						src="https://www.youtube.com/embed/fY6O8t8vjuo"> </iframe>
-			
-			</div>
 
 </body>
 </html>

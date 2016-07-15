@@ -12,16 +12,34 @@
 
 	</appender>
 
+	<appender name="CONSOLE_LOG_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./log/pmg.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>./log/pmg%d{dd-MM-yyyy}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} %level [%thread] %logger{10} [%file:%line] - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
 	<logger name="org.springframework" level="warn" additivity="false">
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CONSOLE_LOG_FILE" />
 	</logger>
 
 	<logger name="com.pmg" level="info" additivity="false">
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CONSOLE_LOG_FILE" />
 	</logger>
 
 	<root level="info">
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CONSOLE_LOG_FILE" />
 	</root>
 
 </configuration>

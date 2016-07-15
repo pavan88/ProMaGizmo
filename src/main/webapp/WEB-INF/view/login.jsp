@@ -110,7 +110,7 @@
 		<section class="content bgcolor-1">
 			<h2>ProMaGizmo | PMG | Sign-In</h2>
 
-			<form action="<c:url value='/j_spring_security_check'/>"
+			<form action="<c:url value='/login'/>"
 				autocomplete="off" method="post">
 
 				<span class="input input--nao"> <input
@@ -140,13 +140,6 @@
 				</fieldset>
 
 			</form>
-			<!-- 
-				<section>
-								<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-								
-								</form> 
-								</section>
-				 -->
 			<section>
 				<a href="resetpasswd">
 					<h5>Password Reset</h5>
@@ -164,136 +157,13 @@
 	</footer>
 	<script
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/classie.js"></script>
-	<script>
-		(function() {
-			// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-			if (!String.prototype.trim) {
-				(function() {
-					// Make sure we trim BOM and NBSP
-					var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-					String.prototype.trim = function() {
-						return this.replace(rtrim, '');
-					};
-				})();
-			}
-
-			[].slice.call(document.querySelectorAll('input.input__field'))
-					.forEach(function(inputEl) {
-						// in case the input is already filled..
-						if (inputEl.value.trim() !== '') {
-							classie.add(inputEl.parentNode, 'input--filled');
-						}
-
-						// events:
-						inputEl.addEventListener('focus', onInputFocus);
-						inputEl.addEventListener('blur', onInputBlur);
-					});
-
-			function onInputFocus(ev) {
-				classie.add(ev.target.parentNode, 'input--filled');
-			}
-
-			function onInputBlur(ev) {
-				if (ev.target.value.trim() === '') {
-					classie.remove(ev.target.parentNode, 'input--filled');
-				}
-			}
-		})();
-	</script>
-	<!--Alert-->
-	<script type="text/javascript"
-		src="assets/core/alert/sweetalert.min.js"></script>
-	<script type="text/javascript"
-		src="assets/front/sign/js/uiMorphingButton_fixed.js"></script>
-	<script>
-		(function() {
-			var docElem = window.document.documentElement, didScroll, scrollPosition;
-
-			// trick to prevent scrolling when opening/closing button
-			function noScrollFn() {
-				window.scrollTo(scrollPosition ? scrollPosition.x : 0,
-						scrollPosition ? scrollPosition.y : 0);
-			}
-
-			function noScroll() {
-				window.removeEventListener('scroll', scrollHandler);
-				window.addEventListener('scroll', noScrollFn);
-			}
-
-			function scrollFn() {
-				window.addEventListener('scroll', scrollHandler);
-			}
-
-			function canScroll() {
-				window.removeEventListener('scroll', noScrollFn);
-				scrollFn();
-			}
-
-			function scrollHandler() {
-				if (!didScroll) {
-					didScroll = true;
-					setTimeout(function() {
-						scrollPage();
-					}, 60);
-				}
-			}
-			;
-
-			function scrollPage() {
-				scrollPosition = {
-					x : window.pageXOffset || docElem.scrollLeft,
-					y : window.pageYOffset || docElem.scrollTop
-				};
-				didScroll = false;
-			}
-			;
-
-			scrollFn();
-
-			var el = document.querySelector('.morph-button');
-
-			new UIMorphingButton(el, {
-				closeEl : '.icon-close',
-				onBeforeOpen : function() {
-					// don't allow to scroll
-					noScroll();
-				},
-				onAfterOpen : function() {
-					// can scroll again
-					canScroll();
-					// add class "noscroll" to body
-					classie.addClass(document.body, 'noscroll');
-					// add scroll class to main el
-					classie.addClass(el, 'scroll');
-				},
-				onBeforeClose : function() {
-					// remove class "noscroll" to body
-					classie.removeClass(document.body, 'noscroll');
-					// remove scroll class from main el
-					classie.removeClass(el, 'scroll');
-					// don't allow to scroll
-					noScroll();
-				},
-				onAfterClose : function() {
-					// can scroll again
-					canScroll();
-				}
-			});
-		})();
-	</script>
+		<!--Alert-->
+	
 	<script
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/svgcheckbx.js"></script>
 	<!--On top-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/assets/core/elevator/elevator.js"></script>
-	<script>
-		// elevator.
-		var elementButton = document.querySelector('footer');
-		var elevator = new Elevator({
-			element : elementButton,
-			mainAudio : './music/elevator-music.mp3', // Music from http://www.bensound.com/
-			endAudio : './music/ding.mp3'
-		});
-	</script>
+
 </body>
 </html>

@@ -227,160 +227,19 @@
 	</footer>
 	<script
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/classie.js"></script>
-	<script>
-		(function() {
-			// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-			if (!String.prototype.trim) {
-				(function() {
-					// Make sure we trim BOM and NBSP
-					var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-					String.prototype.trim = function() {
-						return this.replace(rtrim, '');
-					};
-				})();
-			}
-
-			[].slice.call(document.querySelectorAll('input.input__field'))
-					.forEach(function(inputEl) {
-						// in case the input is already filled..
-						if (inputEl.value.trim() !== '') {
-							classie.add(inputEl.parentNode, 'input--filled');
-						}
-
-						// events:
-						inputEl.addEventListener('focus', onInputFocus);
-						inputEl.addEventListener('blur', onInputBlur);
-					});
-
-			function onInputFocus(ev) {
-				classie.add(ev.target.parentNode, 'input--filled');
-			}
-
-			function onInputBlur(ev) {
-				if (ev.target.value.trim() === '') {
-					classie.remove(ev.target.parentNode, 'input--filled');
-				}
-			}
-		})();
-	</script>
 	<script
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/uiProgressButton.js"></script>
 
-	<script>
-		[].slice.call(document.querySelectorAll('.progress-button')).forEach(
-				function(bttn, pos) {
-					new UIProgressButton(bttn, {
-						callback : function(instance) {
-							var progress = 0, interval = setInterval(
-									function() {
-										progress = Math.min(progress
-												+ Math.random() * 0.1, 1);
-										instance.setProgress(progress);
-
-										if (progress === 1) {
-											instance.stop(pos === 1
-													|| pos === 3 ? -1 : 1);
-											clearInterval(interval);
-										}
-									}, 150);
-						}
-					});
-				});
-	</script>
 	<!--Alert-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/assets/core/alert/sweetalert.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/uiMorphingButton_fixed.js"></script>
-	<script>
-		(function() {
-			var docElem = window.document.documentElement, didScroll, scrollPosition;
-
-			// trick to prevent scrolling when opening/closing button
-			function noScrollFn() {
-				window.scrollTo(scrollPosition ? scrollPosition.x : 0,
-						scrollPosition ? scrollPosition.y : 0);
-			}
-
-			function noScroll() {
-				window.removeEventListener('scroll', scrollHandler);
-				window.addEventListener('scroll', noScrollFn);
-			}
-
-			function scrollFn() {
-				window.addEventListener('scroll', scrollHandler);
-			}
-
-			function canScroll() {
-				window.removeEventListener('scroll', noScrollFn);
-				scrollFn();
-			}
-
-			function scrollHandler() {
-				if (!didScroll) {
-					didScroll = true;
-					setTimeout(function() {
-						scrollPage();
-					}, 60);
-				}
-			}
-			;
-
-			function scrollPage() {
-				scrollPosition = {
-					x : window.pageXOffset || docElem.scrollLeft,
-					y : window.pageYOffset || docElem.scrollTop
-				};
-				didScroll = false;
-			}
-			;
-
-			scrollFn();
-
-			var el = document.querySelector('.morph-button');
-
-			new UIMorphingButton(el, {
-				closeEl : '.icon-close',
-				onBeforeOpen : function() {
-					// don't allow to scroll
-					noScroll();
-				},
-				onAfterOpen : function() {
-					// can scroll again
-					canScroll();
-					// add class "noscroll" to body
-					classie.addClass(document.body, 'noscroll');
-					// add scroll class to main el
-					classie.addClass(el, 'scroll');
-				},
-				onBeforeClose : function() {
-					// remove class "noscroll" to body
-					classie.removeClass(document.body, 'noscroll');
-					// remove scroll class from main el
-					classie.removeClass(el, 'scroll');
-					// don't allow to scroll
-					noScroll();
-				},
-				onAfterClose : function() {
-					// can scroll again
-					canScroll();
-				}
-			});
-		})();
-	</script>
 	<script
 		src="${pageContext.request.contextPath}/static/assets/front/sign/js/svgcheckbx.js"></script>
 	<!--On top-->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/assets/core/elevator/elevator.js"></script>
-	<script>
-		// elevator.
-		var elementButton = document.querySelector('footer');
-		var elevator = new Elevator({
-			element : elementButton,
-			mainAudio : './music/elevator-music.mp3', // Music from http://www.bensound.com/
-			endAudio : './music/ding.mp3'
-		});
-	</script>
+
 </body>
 </html>
