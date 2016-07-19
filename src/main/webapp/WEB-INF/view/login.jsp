@@ -42,18 +42,8 @@
 <!-- IonIcons -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/static/assets/core/ionicons/css/ionicons.min.css" />
-<SCRIPT type="text/javascript">
-	var message = "function disabled";
-	function rtclickcheck(keyp) {
-		
-		if (navigator.appName == "Netscape" && keyp.which == 3) {
-			alert(message);
-			return false;
-		}
-		
-	}
-	document.onmousedown = rtclickcheck;
-</SCRIPT>
+
+
 <script type="text/javascript">
 	(function($) {
 
@@ -110,8 +100,7 @@
 		<section class="content bgcolor-1">
 			<h2>ProMaGizmo | PMG | Sign-In</h2>
 
-			<form action="<c:url value='/login'/>"
-				autocomplete="off" method="post">
+			<form action="<c:url value='/login'/>" autocomplete="off" method="POST">
 
 				<span class="input input--nao"> <input
 					class="input__field input__field--nao" type="text" id="input-1"
@@ -134,10 +123,12 @@
 							d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0" />
 					</svg></span>
 
-
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<fieldset>
 					<input type="submit" class="button" value="SignIn" />
 				</fieldset>
+				
+				
 
 			</form>
 			<section>

@@ -1,9 +1,9 @@
-package com.pmg.dao;
+package com.pmg.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User {
+public class User extends BasicEntity {
 
 	private String username;
 

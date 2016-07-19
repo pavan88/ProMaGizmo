@@ -14,7 +14,7 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
 
 	@Override
 	protected String getDatabaseName() {
-		return "pmgdb";
+		return "pmgdb1";
 	}
 
 	@Override
@@ -26,22 +26,17 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
 
 	@Override
 	protected String getMappingBasePackage() {
-
 		return "com.pmg.model";
 	}
 
 	@Bean
 	public MongoTemplate mongoTemplate() throws Exception {
 		MongoTemplate mongoTemplate = new MongoTemplate(this.mongo(), this.getDatabaseName());
-		System.out.println("****************************");
-		System.out.println("Returning the Mongo Bean" + mongoTemplate.getDb());
-		System.out.println("****************************");
 		return mongoTemplate;
 	}
 
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
-		
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 

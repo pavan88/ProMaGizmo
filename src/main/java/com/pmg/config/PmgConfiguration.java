@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.pmg")
 @PropertySource("classpath:pmg.properties")
+@Import(value = { PmgSecurityConfig.class })
 public class PmgConfiguration extends WebMvcConfigurerAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(PmgConfiguration.class);
@@ -30,9 +32,6 @@ public class PmgConfiguration extends WebMvcConfigurerAdapter {
 		internalResourceViewResolver.setPrefix("/WEB-INF/view/");
 		internalResourceViewResolver.setSuffix(".jsp");
 
-		logger.info("********************************");
-		logger.info("Returning the internal View Resolver:" + internalResourceViewResolver.toString());
-		logger.info("********************************");
 		return internalResourceViewResolver;
 
 	}
@@ -56,7 +55,7 @@ public class PmgConfiguration extends WebMvcConfigurerAdapter {
 		resource.setDefaultEncoding("UTF-8");
 		resource.setUseCodeAsDefaultMessage(true);
 		// resource.setBasename("classpath:pmg");
-		//resource.setBasename("file:///D:\\git\\properties\\config\\pmg");
+		// resource.setBasename("file:///D:\\git\\properties\\config\\pmg");
 		resource.setCacheSeconds(10);
 		logger.info("********************************");
 		logger.info("Returning the Message Resource:" + resource.toString());
@@ -73,10 +72,6 @@ public class PmgConfiguration extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		logger.info("********************************");
-		logger.info("Setting the External Resource:" + registry.toString());
-		logger.info("********************************");
-
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
 

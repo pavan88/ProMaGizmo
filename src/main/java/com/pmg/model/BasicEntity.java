@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pmg.dao;
+package com.pmg.model;
 
 import org.springframework.data.annotation.Id;
 
